@@ -17,5 +17,8 @@ resources:
   - github.com/argoproj-labs/argocd-autopilot/manifests/base?ref=v0.4.19
   - ./ingress.yaml
   - ./argogrpc.service.yaml
-patchesStrategicMerge:
-  - patches/argocd-cmd-params-cm.yaml
+patches:                       # ← 新フィールド
+  - path: patches/argocd-cmd-params-cm.yaml   # ← 旧 patchesStrategicMerge と同じパス
+    target:                                   #   (複数置くなら複数行で列挙)
+      kind: ConfigMap
+      name: argocd-cmd-params-cm
