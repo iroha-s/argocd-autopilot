@@ -14,7 +14,8 @@ configMapGenerator:
 kind: Kustomization
 namespace: argocd
 resources:
-- github.com/argoproj-labs/argocd-autopilot/manifests/base?ref=v0.4.19
-- ./ingress.yaml
-- ./argogrpc.service.yaml
-- ./argocd-cm.yaml
+  - github.com/argoproj-labs/argocd-autopilot/manifests/base?ref=v0.4.19
+  - ./ingress.yaml
+  - ./argogrpc.service.yaml
+patchesStrategicMerge:
+  - patches/argocd-cmd-params-cm.yaml
